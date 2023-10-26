@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.moriamap.model.GeographicPositionTest" tests="28" skipped="0" failures="0" errors="0" timestamp="2023-04-04T20:47:11" hostname="manj" time="0.031">
+  <properties/>
+  <testcase name="readTwoStringSameFormatDecimal()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="sameGPAreEqual()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="longitudeOfNullIslandIs0()" classname="dev.moriamap.model.GeographicPositionTest" time="0.0"/>
+  <testcase name="cartesianCoordinatesOfNorthPoleOnEarthAre0_0_Rt()" classname="dev.moriamap.model.GeographicPositionTest" time="0.002"/>
+  <testcase name="latitudeOf180DegreesThrowsIllegalArgumentException()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="latitudeOfMinus91DegreesThrowsIllegalArgumentException()" classname="dev.moriamap.model.GeographicPositionTest" time="0.0"/>
+  <testcase name="latitudeOfGPAtLatitude5Is5()" classname="dev.moriamap.model.GeographicPositionTest" time="0.0"/>
+  <testcase name="gpInstanceIsNotEqualToNull()" classname="dev.moriamap.model.GeographicPositionTest" time="0.0"/>
+  <testcase name="euclideanDistanceBetweenNorthAndSouthPoleIsTwiceEarthRadius()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="longitudeOf281DegreesThrowsIllegalArgumentException()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="longitudeOfMinus181DegreesThrowsIllegalArgumentException()" classname="dev.moriamap.model.GeographicPositionTest" time="0.0"/>
+  <testcase name="euclideanDistanceWithNegativeRadiusThrowsException()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="hashCodeOfEqualObjectIsEqual()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="sameGPInstancesAreEqual()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="differentLongitudeOfGPsMakesThemNotEqual()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="distanceFromNorthPoleToSouthPoleIsTwiceTheEarthRadius()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="geographicPositionIsNotEqualToInteger()" classname="dev.moriamap.model.GeographicPositionTest" time="0.0"/>
+  <testcase name="euclideanDistanceBetweenSameGPIs0()" classname="dev.moriamap.model.GeographicPositionTest" time="0.0"/>
+  <testcase name="readTwoStringDifferentFormat()" classname="dev.moriamap.model.GeographicPositionTest" time="0.0"/>
+  <testcase name="readTwoStringSameFormatDegree()" classname="dev.moriamap.model.GeographicPositionTest" time="0.0"/>
+  <testcase name="fromWrongFormat()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="cartesianCoordinatesOfSouthPoleOnEarthAre0_0_MinusRt()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="fromReadNull()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="latitudeOfNullIslandIs0()" classname="dev.moriamap.model.GeographicPositionTest" time="0.0"/>
+  <testcase name="differentLatitudeOfGPsMakesThemNotEqual()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="negativeRadiusForCartesianCoordinatesThrowsException()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <testcase name="cartesianCoordinatesOfNullIslandIsOnEarthAreRt_0_0()" classname="dev.moriamap.model.GeographicPositionTest" time="0.0"/>
+  <testcase name="longitudeOfGPAtLongitude42Is42()" classname="dev.moriamap.model.GeographicPositionTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

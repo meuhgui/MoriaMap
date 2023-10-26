@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.moriamap.model.GeographicVertexTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2023-04-04T20:47:11" hostname="manj" time="0.012">
+  <properties/>
+  <testcase name="GeographicVertexIsNotEqualToNull()" classname="dev.moriamap.model.GeographicVertexTest" time="0.0"/>
+  <testcase name="neighborRemovedIfPresent()" classname="dev.moriamap.model.GeographicVertexTest" time="0.0"/>
+  <testcase name="geoVertexHasNoNeighborsOnCreation()" classname="dev.moriamap.model.GeographicVertexTest" time="0.0"/>
+  <testcase name="semanticallyEqualInstancesAreEqual()" classname="dev.moriamap.model.GeographicVertexTest" time="0.0"/>
+  <testcase name="vertexAddedToItsNeighborsThrowsException()" classname="dev.moriamap.model.GeographicVertexTest" time="0.0"/>
+  <testcase name="semanticallyUnequalInstancesAreNotEqual()" classname="dev.moriamap.model.GeographicVertexTest" time="0.0"/>
+  <testcase name="nullAddedToNeighborsThrowsException()" classname="dev.moriamap.model.GeographicVertexTest" time="0.001"/>
+  <testcase name="equalsOnItselfReturnsTrue()" classname="dev.moriamap.model.GeographicVertexTest" time="0.001"/>
+  <testcase name="hashCodeOfEqualObjectsIsEqual()" classname="dev.moriamap.model.GeographicVertexTest" time="0.001"/>
+  <testcase name="neighborNotAddedIfAlreadyPresent()" classname="dev.moriamap.model.GeographicVertexTest" time="0.0"/>
+  <testcase name="instanceOfDifferentClassIsNotEqual()" classname="dev.moriamap.model.GeographicVertexTest" time="0.0"/>
+  <testcase name="geoPosOfGeoVertexAtNorthPoleIsNorthPole()" classname="dev.moriamap.model.GeographicVertexTest" time="0.0"/>
+  <testcase name="nullGeoPosOnGeoVertexCreationThrowsException()" classname="dev.moriamap.model.GeographicVertexTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

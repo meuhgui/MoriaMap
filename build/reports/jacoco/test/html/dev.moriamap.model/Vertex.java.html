@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Vertex.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MoriaMap</a> &gt; <a href="index.source.html" class="el_package">dev.moriamap.model</a> &gt; <span class="el_source">Vertex.java</span></div><h1>Vertex.java</h1><pre class="source lang-java linenums">package dev.moriamap.model;
+
+import java.util.*;
+
+/**
+ * Represents a vertex of a graph
+ */
+public abstract class Vertex {
+
+    /**
+     * The list of neighbors to which this vertex is linked.
+     */
+    protected List&lt;Vertex&gt; neighbors;
+
+    /**
+     * Builds a Vertex which does not have neighbors.
+     */
+<span class="fc" id="L18">    protected Vertex() {</span>
+<span class="fc" id="L19">        this.neighbors = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L20">    }</span>
+
+    /**
+     * Gets the list of the neighbors.
+     * @return a copy of the neighbor's list of the caller.
+     */
+    public List&lt;Vertex&gt; getNeighbors() {
+<span class="fc" id="L27">        List&lt;Vertex&gt; res = new ArrayList&lt;&gt;(this.neighbors.size());</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        for (Vertex v : this.neighbors) {</span>
+<span class="fc" id="L29">            res.add(v);</span>
+<span class="fc" id="L30">        }</span>
+<span class="fc" id="L31">        return res;</span>
+    }
+
+    /**
+     * Adds the specified Vertex to this Vertex neighbors if it is not already
+     * a neighbor.
+     *
+     * @param neighbor the Vertex to add to this Vertex neighbors
+     * @return true if the specified vertex was added to this Vertex neighbors
+     * @throws IllegalArgumentException if specified Vertex is this Vertex
+     * @throws NullPointerException if specified Vertex is null
+     */
+    public boolean addNeighbor(Vertex neighbor) {
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (this == neighbor)</span>
+<span class="fc" id="L45">            throw new IllegalArgumentException(&quot;Can not add this to neighbors&quot;);</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (neighbor == null)</span>
+<span class="fc" id="L47">            throw new NullPointerException(&quot;Can not add null to neighbors&quot;);</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (!this.neighbors.contains(neighbor)) {</span>
+<span class="fc" id="L49">            this.neighbors.add(neighbor);</span>
+<span class="fc" id="L50">            return true;</span>
+        }
+<span class="fc" id="L52">        return false;</span>
+    }
+
+    /**
+     * Removes a neighbor to the caller.
+     * @param neighbor to be removed.
+     * @return true if the neighbor was removed.
+     */
+    public boolean removeNeighbor(Vertex neighbor) {
+<span class="fc" id="L61">        return this.neighbors.remove(neighbor);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

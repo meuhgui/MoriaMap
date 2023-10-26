@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.moriamap.model.VariantTest" tests="39" skipped="0" failures="0" errors="0" timestamp="2023-04-04T20:47:11" hostname="manj" time="0.086">
+  <properties/>
+  <testcase name="travelTimeWithoutOutgoingSegmentThrowsException()" classname="dev.moriamap.model.VariantTest" time="0.03"/>
+  <testcase name="addANullTransportSegmentThrowsException()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="construction()" classname="dev.moriamap.model.VariantTest" time="0.004"/>
+  <testcase name="addingTwiceTheSameTimeToVariantReturnFalse()" classname="dev.moriamap.model.VariantTest" time="0.002"/>
+  <testcase name="getOutgoingSegmentReturnsOutgoingSegment()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="hasOutgoingSegmentReturnsTrueWhenStopHasOutgoingSegment()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="hasOutgoingSegmentThrowsExceptionWhenStopIsNull()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="variantsHavingSameIdAndLinesWithSameReferencesAreEqual()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="getEnd()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="variantsHavingSameIdAndSameLineNameAndDifferentTransportSegmentsSizeAreNotEqual()" classname="dev.moriamap.model.VariantTest" time="0.002"/>
+  <testcase name="emptyVariantWithNullLineThrowsException()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="variantsWithDifferentTrainDepartureAreNotEqual()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="getTransportSegments()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="variantInstanceIsNotEqualToNull()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="objectIsNotEqualToVariant()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="getOutgoingSegmentThrowsExceptionWhenStopIsNull()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="getLineName()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="variantsHavingSameIdAndSameLineNameAndDifferentTransportSegmentsAreNotEqual()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="addingTwiceTheSameTransportSegmentReturnFalse()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="variantsWithDifferentTrainDepartureSizeAreNotEqual()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="emptyVariantWithNullNameThrowsException()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="hasStopReturnsTrueWhenStopIsPresent()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="variantsHavingSameIdAndSameLineNameAndSameTransportSegmentsAreEqual()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="variantHasNoTransportSegmentAtCreation()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="variantsWithDifferentIdAndSameLineAreNotEqual()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="travelTimeOfVariantWithOneSegmentEqualsDurationOfSegment()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="travelTimeWithNullArgumentThrowsException()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="hasOutgoingSegmentReturnsFalseWhenStopIsAbsent()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="variantIsEqualToItself()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="getDepartures()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="hashCodeOfSemanticallyEqualVariantsAreEqual()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="addATransportSegmentToVariant()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="getOutgoingSegmentThrowsExceptionWhenStopHasNoOutgoingEdge()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="variantOfSameIdInDifferentLinesAreNotEqual()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="travelTimeOfVariantFromStartToEndEqualsSumOfSegmentDurations()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <testcase name="hasStopReturnsFalseWhenStopIsAbsent()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="hasStopThrowsExceptionWithNullArgument()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="getStart()" classname="dev.moriamap.model.VariantTest" time="0.0"/>
+  <testcase name="addNullTimeToVariantThrowsException()" classname="dev.moriamap.model.VariantTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

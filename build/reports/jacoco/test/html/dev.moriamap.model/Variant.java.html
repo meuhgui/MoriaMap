@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Variant.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MoriaMap</a> &gt; <a href="index.source.html" class="el_package">dev.moriamap.model</a> &gt; <span class="el_source">Variant.java</span></div><h1>Variant.java</h1><pre class="source lang-java linenums">package dev.moriamap.model;
+
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.time.Duration;
+
+/**
+ * Represents a Line variant, a unidirectional traversal of a Line such that the
+ * first Stop has no incoming transport segments and the last Stop has no
+ * outgoing transport segments, without loops between them.
+ */
+public final class Variant {
+    private static final String NULL_ARG_ERR_MSG = &quot;Argument can not be null&quot;;
+
+    /**
+     * The name of this Variant.
+     */
+    private String name;
+
+    /**
+     * The name of the owner Line.
+     */
+    private String lineName;
+
+    /**
+     * The TransportSegments in this Variant.
+     */
+    private List&lt;TransportSegment&gt; transportSegments;
+
+    /**
+     * The departures of transports from this Variant first Stop.
+     */
+    private List&lt;LocalTime&gt; departures;
+
+    /**
+     * Class constructor specifying variant name and owner line name
+     * @param name the name of this Variant
+     * @param lineName the name of the owner Line of this Variant
+     */
+<span class="fc" id="L42">    private Variant(String name, String lineName) {</span>
+<span class="fc" id="L43">        this.name = name;</span>
+<span class="fc" id="L44">        this.lineName = lineName;</span>
+<span class="fc" id="L45">        this.transportSegments = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L46">        this.departures = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L47">    }</span>
+
+    /**
+     * {@return a new empty Variant with the given id and owner line name}
+     * @param name the name of this Variant
+     * @param lineName the owner Line name of this Variant
+     * @throws IllegalArgumentException if an argument is null
+     */
+    public static Variant empty(String name, String lineName) {
+<span class="fc bfc" id="L56" title="All 4 branches covered.">        if (lineName == null || name == null) {</span>
+<span class="fc" id="L57">            throw new IllegalArgumentException(NULL_ARG_ERR_MSG);</span>
+        }
+<span class="fc" id="L59">        return new Variant(name, lineName);</span>
+    }
+
+    /**
+     * Returns the first Stop in the traversal of this Variant. 
+     * The first Stop is such that there is no transportSegment that includes it
+     * as a destination in this variant. The variant must have only one first
+     * stop and be in the shape of a line (not a circular shape or a fork).
+     * @return the first Stop of this Variant
+     */
+    public Stop getStart(){
+<span class="fc" id="L70">        List&lt;Stop&gt; stops = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L71">        List&lt;Stop&gt; prevTo = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        for(TransportSegment ts : transportSegments){</span>
+<span class="fc" id="L73">            Stop from = (Stop)ts.getFrom();</span>
+<span class="fc" id="L74">            Stop to = (Stop)ts.getTo();</span>
+<span class="fc" id="L75">            prevTo.add(to);</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">            if(stops.contains(to))</span>
+<span class="fc" id="L77">                stops.remove(to);</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">            if(!prevTo.contains(from))</span>
+<span class="fc" id="L79">                stops.add(from);</span>
+<span class="fc" id="L80">        }</span>
+<span class="fc" id="L81">        return stops.get(0);</span>
+    }
+
+    /**
+     * Get the last Stop in the traversal of this Variant.
+     * The last Stop is such that there is no transportSegment that includes it
+     * as a departure in this variant.
+     * The variant must have only one first stop and be in the shape of a line.
+     * @return the last Stop of this Variant
+     */
+    public Stop getEnd(){
+<span class="fc" id="L92">        List&lt;Stop&gt; stops = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L93">        List&lt;Stop&gt; prevFrom = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        for(TransportSegment ts : transportSegments){</span>
+<span class="fc" id="L95">            Stop from = (Stop)ts.getFrom();</span>
+<span class="fc" id="L96">            Stop to = (Stop)ts.getTo();</span>
+<span class="fc" id="L97">            prevFrom.add(from);</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">            if(stops.contains(from))</span>
+<span class="fc" id="L99">                stops.remove(from);</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">            if(!prevFrom.contains(to))</span>
+<span class="fc" id="L101">                stops.add(to);</span>
+<span class="fc" id="L102">        }</span>
+<span class="fc" id="L103">        return stops.get(0);</span>
+    }
+
+    /**
+     * Adds the given TransportSegment to this Variant.
+     * @param ts the TransportSegment to add
+     * @return true if the given TransportSegment was added
+     * @throws IllegalArgumentException if ts is null
+     */
+    public boolean addTransportSegment(TransportSegment ts){
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        if (ts == null)</span>
+<span class="fc" id="L114">            throw new IllegalArgumentException(NULL_ARG_ERR_MSG);</span>
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        if (this.transportSegments.contains(ts))</span>
+<span class="fc" id="L116">            return false;</span>
+<span class="fc" id="L117">        return this.transportSegments.add(ts);</span>
+    }
+
+    /**
+     * Adds the given departure to this Variant.
+     * @param departure the departure to be add
+     * @return true if the given departure was added
+     * @throws IllegalArgumentException if departure is null
+     */
+    public boolean addDeparture(LocalTime departure){
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        if (departure == null)</span>
+<span class="fc" id="L128">            throw new IllegalArgumentException(NULL_ARG_ERR_MSG);</span>
+<span class="fc bfc" id="L129" title="All 2 branches covered.">        if (this.departures.contains(departure))</span>
+<span class="fc" id="L130">            return false;</span>
+<span class="fc" id="L131">        return this.departures.add(departure);</span>
+    }
+
+    /**
+     * {@return the name of this Variant}
+     */
+    public String getName(){
+<span class="fc" id="L138">        return this.name;</span>
+    }
+
+    /**
+     * {@return the lineName of this Variant}
+     */
+    public String getLineName(){
+<span class="fc" id="L145">        return this.lineName;</span>
+    }
+
+    /**
+     * {@return a copy of this Variant's transport departures list}
+     */
+    public List&lt;LocalTime&gt; getDepartures(){
+<span class="fc" id="L152">        return new ArrayList&lt;&gt;(this.departures);</span>
+    }
+
+    /**
+     * {@return a copy of this Variant's transport segments}
+     */
+    public List&lt;TransportSegment&gt; getTransportSegments(){
+<span class="fc" id="L159">        return new ArrayList&lt;&gt;(this.transportSegments);</span>
+    }
+
+    /**
+     * Check if this variant is equal to the given line.
+     * &lt;p&gt;
+     *     Two variants are equal if they have the same lineName, the same id 
+     *     and the same (by a call to equals) transportSegments in the same
+     *     order.
+     * &lt;/p&gt;
+     * @param object the Object to compare
+     * @return true if this is equal to object
+     */
+    @Override public boolean equals(Object object) {
+<span class="fc bfc" id="L173" title="All 2 branches covered.">        if (this == object)</span>
+<span class="fc" id="L174">            return true;</span>
+<span class="pc bpc" id="L175" title="1 of 4 branches missed.">        if (object == null || object.getClass() != this.getClass())</span>
+<span class="fc" id="L176">            return false;</span>
+<span class="fc" id="L177">        Variant other = (Variant) object;</span>
+<span class="fc bfc" id="L178" title="All 2 branches covered.">        return other.lineName.equals(this.lineName)</span>
+<span class="fc bfc" id="L179" title="All 2 branches covered.">            &amp;&amp; other.name.equals(this.name)</span>
+<span class="fc bfc" id="L180" title="All 2 branches covered.">            &amp;&amp; other.departures.equals(this.departures)</span>
+<span class="fc bfc" id="L181" title="All 2 branches covered.">            &amp;&amp; other.transportSegments.equals(this.transportSegments);</span>
+    }
+
+    /**
+     * {@return the hash code of this Variant}
+     */
+    @Override public int hashCode(){
+<span class="fc" id="L188">        final int prime = 13;</span>
+<span class="fc" id="L189">        int hash = 1;</span>
+<span class="fc" id="L190">        hash *= prime;</span>
+<span class="fc" id="L191">        hash += this.name.hashCode();</span>
+<span class="fc" id="L192">        hash += this.lineName.hashCode();</span>
+<span class="fc bfc" id="L193" title="All 2 branches covered.">        for(TransportSegment ts : this.transportSegments) hash += ts.hashCode();</span>
+<span class="fc bfc" id="L194" title="All 2 branches covered.">        for(LocalTime t : this.departures) hash += t.hashCode();</span>
+<span class="fc" id="L195">        return hash;</span>
+    }
+
+    /**
+     * {@return true if the specified Stop is present in this Variant}
+     * @param stop The stop whose presence is to verify
+     * @throws IllegalArgumentException if stop is null
+     */
+    public boolean hasStop(Stop stop) {
+<span class="fc bfc" id="L204" title="All 2 branches covered.">        if (stop == null)</span>
+<span class="fc" id="L205">            throw new IllegalArgumentException(NULL_ARG_ERR_MSG);</span>
+<span class="fc bfc" id="L206" title="All 2 branches covered.">        for (TransportSegment ts: this.transportSegments) {</span>
+<span class="pc bpc" id="L207" title="1 of 4 branches missed.">            if (ts.getFrom().equals(stop) || ts.getTo().equals(stop))</span>
+<span class="fc" id="L208">                return true;</span>
+<span class="fc" id="L209">        }</span>
+<span class="fc" id="L210">        return false;</span>
+    }
+
+    /**
+     * {@return true if a transport segment of this variant is an outgoing edge
+     * of the specified stop}
+     * @param stop Some stop
+     * @throws IllegalArgumentException if stop is null
+     */
+    public boolean hasOutgoingSegment(Stop stop) {
+<span class="fc bfc" id="L220" title="All 2 branches covered.">        if (stop == null)</span>
+<span class="fc" id="L221">            throw new IllegalArgumentException(NULL_ARG_ERR_MSG);</span>
+<span class="fc bfc" id="L222" title="All 2 branches covered.">        for (TransportSegment ts: this.transportSegments) {</span>
+<span class="fc bfc" id="L223" title="All 2 branches covered.">            if (ts.getFrom().equals(stop))</span>
+<span class="fc" id="L224">                return true;</span>
+<span class="fc" id="L225">        }</span>
+<span class="fc" id="L226">        return false;</span>
+    }
+
+    /**
+     * {@return the outgoing TransportSegment of the specified Stop in this
+     * Variant}
+     * @param stop Some stop
+     * @throws IllegalArgumentException if stop is null
+     * @throws NoSuchElementException if the given stop has no outgoing segment
+     *                                in this Variant
+     * @throws IllegalStateException if the given stop has an outgoing segment
+     *                               in this Variant but was not found
+     */
+    public TransportSegment getOutgoingSegment(Stop stop) {
+<span class="fc bfc" id="L240" title="All 2 branches covered.">        if (!hasOutgoingSegment(stop))</span>
+<span class="fc" id="L241">            throw new NoSuchElementException(&quot;No such segment for given stop&quot;);</span>
+<span class="pc bpc" id="L242" title="1 of 2 branches missed.">        for (TransportSegment ts: this.transportSegments) {</span>
+<span class="fc bfc" id="L243" title="All 2 branches covered.">            if (ts.getFrom().equals(stop))</span>
+<span class="fc" id="L244">                return ts;</span>
+<span class="fc" id="L245">        }</span>
+<span class="nc" id="L246">        throw new IllegalStateException(&quot;Segment in variant not found&quot;);</span>
+    }
+
+    /**
+     * {@return the travel time from this Variant's first Stop to the given
+     * stop}
+     * @param to the destination Stop
+     * @throws IllegalArgumentException if to is null
+     * @throws NoSuchElementException if during the traversal one of the stops
+     *                                encountered is not the destination and it
+     *                                has no outgoing segment.
+     * @throws IllegalStateException if the given stop has an outgoing segment
+     *                               in this Variant but was not found
+     */
+    public Duration getTravelTimeTo(Stop to) {
+<span class="fc bfc" id="L261" title="All 2 branches covered.">        if (to == null)</span>
+<span class="fc" id="L262">            throw new IllegalArgumentException(NULL_ARG_ERR_MSG);</span>
+<span class="fc" id="L263">        Duration res = Duration.ZERO;</span>
+<span class="fc" id="L264">        TransportSegment ts = null;</span>
+<span class="fc" id="L265">        Stop cur = getStart();</span>
+<span class="fc bfc" id="L266" title="All 2 branches covered.">        while (!cur.equals(to)) {</span>
+<span class="fc" id="L267">            ts = getOutgoingSegment(cur);</span>
+<span class="fc" id="L268">            res = res.plus(ts.getTravelDuration());</span>
+<span class="fc" id="L269">            cur = (Stop)ts.getTo();</span>
+        }
+<span class="fc" id="L271">        return res;</span>
+    }
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

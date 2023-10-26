@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Line.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MoriaMap</a> &gt; <a href="index.source.html" class="el_package">dev.moriamap.model</a> &gt; <span class="el_source">Line.java</span></div><h1>Line.java</h1><pre class="source lang-java linenums">package dev.moriamap.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Represents a line of a transport network.
+ */
+public final class Line {
+
+    // Name of this line
+    private final String name;
+
+    // Variants of this line
+    private final List&lt;Variant&gt; variants;
+
+    /**
+     * Class constructor specifying name.
+     *&lt;p&gt;
+     *     The list of variants is initialized as an empty list.
+     *&lt;/p&gt;
+     *
+     * @param  name the name of this Line
+     */
+<span class="fc" id="L25">    private Line(String name) {</span>
+<span class="fc" id="L26">        this.name = name;</span>
+<span class="fc" id="L27">        this.variants = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L28">    }</span>
+
+    /**
+     * {@return the name of this line}
+     */
+    public String getName() {
+<span class="fc" id="L34">        return this.name;</span>
+    }
+
+    /**
+     * {@return a copy of this line's variants list}
+     */
+    public List&lt;Variant&gt; getVariants() {
+<span class="fc" id="L41">        List &lt;Variant&gt; res = new ArrayList&lt;&gt;(this.variants.size());</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        for (Variant v : this.variants)</span>
+<span class="fc" id="L43">            res.add(v);</span>
+
+<span class="fc" id="L45">        return res;</span>
+    }
+
+    /**
+     * Static factory.
+     *
+     * @param name of this line
+     * @throws IllegalArgumentException if name is null
+     * @return a new Line with the given name
+     */
+    public static Line of(String name) {
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (name == null) {</span>
+<span class="fc" id="L57">            throw new IllegalArgumentException(&quot;Null name is not allowed&quot;);</span>
+        }
+<span class="fc" id="L59">        return new Line(name);</span>
+    }
+
+    /**
+     * Checks if this line contains the given variant.
+     *
+     * @param v variant that we are looking for
+     * @return true if this.variants contains v.
+     */
+    public boolean containsVariant(Variant v) {
+<span class="fc" id="L69">        return this.variants.contains(v);</span>
+    }
+
+    /**
+     * Adds the given variant.
+     * &lt;p&gt;
+     * If this line already contains the given variant, the variants list remains unchanged.
+     * &lt;/p&gt;
+     *
+     * @param v variant to be added
+     * @return true if the given variant was added
+     * @throws IllegalArgumentException if the given variant is null
+     */
+    public boolean addVariant(Variant v) {
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        if (v == null) {</span>
+<span class="fc" id="L84">            throw new IllegalArgumentException(&quot;Null variant is not allowed&quot;);</span>
+        }
+
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        if (this.containsVariant(v)) {</span>
+<span class="fc" id="L88">            return false;</span>
+        }
+
+<span class="fc" id="L91">        return this.variants.add(v);</span>
+    }
+
+    /**
+     * Check if this line is equal to the given line.
+     * &lt;p&gt;
+     *     Two lines are equal if they have the same name and the same
+     *     (by a call to equals) variants in the same order.
+     * &lt;/p&gt;
+     * @param object to be compared to
+     * @return true if this is equal to object
+     */
+    @Override public boolean equals(Object object) {
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        if (this ==  object)</span>
+<span class="fc" id="L105">            return true;</span>
+<span class="pc bpc" id="L106" title="1 of 4 branches missed.">        if (object == null || object.getClass() != this.getClass())</span>
+<span class="fc" id="L107">            return false;</span>
+<span class="fc" id="L108">        Line other = (Line) object;</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        if (other.variants.size() != this.variants.size())</span>
+<span class="fc" id="L110">            return false;</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        for (int i = 0; i &lt; this.variants.size(); i++) {</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">            if (!this.variants.get(i).equals(other.variants.get(i)))</span>
+<span class="fc" id="L113">                return false;</span>
+        }
+<span class="fc" id="L115">        return this.name.equals(other.name);</span>
+    }
+
+    /**
+     * Gets the hash code of this line
+     * @return the hash code of this line
+     */
+    @Override public int hashCode(){
+<span class="fc" id="L123">        final int prime = 13;</span>
+<span class="fc" id="L124">        int hash = 1;</span>
+<span class="fc" id="L125">        hash *= prime;</span>
+<span class="fc" id="L126">        hash += this.name.hashCode();</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        for(int i=0;i&lt;this.variants.size();i++){</span>
+<span class="fc" id="L128">            hash += this.variants.get(i).hashCode();</span>
+        }
+<span class="fc" id="L130">        return hash;</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

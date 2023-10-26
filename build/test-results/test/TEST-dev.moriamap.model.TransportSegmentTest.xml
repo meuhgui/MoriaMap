@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.moriamap.model.TransportSegmentTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2023-04-04T20:47:11" hostname="manj" time="0.015">
+  <properties/>
+  <testcase name="testTransportSegmentNotEqualToNull()" classname="dev.moriamap.model.TransportSegmentTest" time="0.001"/>
+  <testcase name="getTravelDuration()" classname="dev.moriamap.model.TransportSegmentTest" time="0.0"/>
+  <testcase name="testObjectIsNotEqualToTransportSegment()" classname="dev.moriamap.model.TransportSegmentTest" time="0.0"/>
+  <testcase name="TransportSegmentWithDifferentFromAreNotEquals()" classname="dev.moriamap.model.TransportSegmentTest" time="0.001"/>
+  <testcase name="TransportSegmentWithNullLineNameThrowsException()" classname="dev.moriamap.model.TransportSegmentTest" time="0.001"/>
+  <testcase name="testGetTo()" classname="dev.moriamap.model.TransportSegmentTest" time="0.0"/>
+  <testcase name="getLineName()" classname="dev.moriamap.model.TransportSegmentTest" time="0.0"/>
+  <testcase name="testConstruction()" classname="dev.moriamap.model.TransportSegmentTest" time="0.001"/>
+  <testcase name="testEqualsOnItselfReturnsTrue()" classname="dev.moriamap.model.TransportSegmentTest" time="0.0"/>
+  <testcase name="testGetFrom()" classname="dev.moriamap.model.TransportSegmentTest" time="0.0"/>
+  <testcase name="testEqualsOnATransportSegmentWithDifferentDurationReturnsFalse()" classname="dev.moriamap.model.TransportSegmentTest" time="0.001"/>
+  <testcase name="TransportSegmentWithDifferentToAreNotEquals()" classname="dev.moriamap.model.TransportSegmentTest" time="0.001"/>
+  <testcase name="testEqualsOnATransportSegmentWithTheSameValuesReturnsTrue()" classname="dev.moriamap.model.TransportSegmentTest" time="0.0"/>
+  <testcase name="testEqualsOnATransportSegmentWithDifferentDistanceReturnsFalse()" classname="dev.moriamap.model.TransportSegmentTest" time="0.0"/>
+  <testcase name="TransportSegmentWithNullVariantNameThrowsException()" classname="dev.moriamap.model.TransportSegmentTest" time="0.001"/>
+  <testcase name="hashCodeOfSemanticallyEqualTransportSegmentsAreEqual()" classname="dev.moriamap.model.TransportSegmentTest" time="0.0"/>
+  <testcase name="testGetWeight()" classname="dev.moriamap.model.TransportSegmentTest" time="0.0"/>
+  <testcase name="getVariantName()" classname="dev.moriamap.model.TransportSegmentTest" time="0.001"/>
+  <testcase name="TransportSegmentWithNullDurationThrowsException()" classname="dev.moriamap.model.TransportSegmentTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

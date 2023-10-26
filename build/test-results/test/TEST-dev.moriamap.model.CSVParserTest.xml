@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.moriamap.model.CSVParserTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-04-04T20:47:11" hostname="manj" time="0.058">
+  <properties/>
+  <testcase name="parseLineThrowsExceptionIfLineIsNull()" classname="dev.moriamap.model.CSVParserTest" time="0.003"/>
+  <testcase name="extractLinesThrowsExceptionWhenArgumentIsNull()" classname="dev.moriamap.model.CSVParserTest" time="0.0"/>
+  <testcase name="parseLineThrowsExceptionIfLineIsEmpty()" classname="dev.moriamap.model.CSVParserTest" time="0.001"/>
+  <testcase name="parseLineThrowsExceptionIfDelimiterIsNull()" classname="dev.moriamap.model.CSVParserTest" time="0.0"/>
+  <testcase name="extractedInconsistentDataThrowsException()" classname="dev.moriamap.model.CSVParserTest" time="0.004"/>
+  <testcase name="parseLineThrowsExceptionIfDelimiterIsEmptyString()" classname="dev.moriamap.model.CSVParserTest" time="0.0"/>
+  <testcase name="parserExtractsExceptedNumberOfLines()" classname="dev.moriamap.model.CSVParserTest" time="0.044"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

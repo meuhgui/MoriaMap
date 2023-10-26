@@ -1,0 +1,6 @@
+projectKey=dev.moriamap:MoriaMap
+serverUrl=http://localhost:9000
+serverVersion=9.9.0.65466
+dashboardUrl=http://localhost:9000/dashboard?id=dev.moriamap%3AMoriaMap
+ceTaskId=AYdOBxm7ziIU0MwPNqd1
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYdOBxm7ziIU0MwPNqd1

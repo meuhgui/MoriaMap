@@ -1,0 +1,122 @@
+* Réunion <2023-02-15 Wed>
+  - Code source et javadoc en anglais
+  - Communication sans lien avec un ticket ou une MR en particulier sur discord
+  - Privilégier les commentaires sur issue/MR => tout le contenu est regroupé 
+    aux endroits où il doit être
+  - Faire des réunions courtes souvent (idéal quotidiennement: /daily meetings/)
+    en distanciel ou presentiel entre chaque mercredi.
+
+* Réunion <2023-02-18 Sat>
+** Analyse des besoins/conception
+   - ~Vertex~
+     Représente une station, identifié par GPS ou Nom station au choix. Autre 
+     type pour point de départ/arrivée (uniformise le calcul avec mélange de 
+     section à pied et en train par exemple) ?
+   - ~Edge~
+     Strategy pattern pour le calcul de distance/temps selon si on est à
+     pied, en train, à vélo, etc...
+     - ~DistanceEdge~
+       Arête étiquetée par une distance
+     - ~TimeEdge~
+       Arête étiquetée par un temps de parcours
+   - ~Graph~
+     Regroupe les sommets et les arêtes
+   - ~NetParser~
+     Lis la description d'un réseau arbitraire
+   - ~ScheduleParser~
+     Lis la description d'horaire par station
+** CI/CD
+   Les machines de la fac ne semblent pas permettre le téléchargement de
+   dépendances lors des pipelines => contacter les profs sur moodle
+* Réunion <2023-02-22 Wed>
+  Adopter SCRUM pour organisation du travail:
+  Séparation du travail en tâches et attribution à chacun, à finir avant la 
+  fin du sprint, date de fin à déterminer selon la quantité de tâches.
+  Mise en place d'un repo mirroir sur GitHub afin de profiter du CI/CD de 
+  GitHub.
+  Elaboration du diagramme des cas d'utilisation.
+* Réunion <2023-03-05 Sun>
+  Travail sur la conception logiciel, notamment la modélisation du réseau
+
+* Réunion <2023-03-06 Mon>
+  Travail de conception sur les parsers, stockage des horaires de passage en 
+  mémoire, lancement du programme, naivigateur, calcul de routes.
+
+* Réunion <2023-03-10 Fri>
+  Problème avec la modélisation actuelle: on ne voit pas les éventuelles 
+  correspondances (ex: Ligne 13 St-Denis -> La Fourche, correspondance -> 
+  Asnières). Solution: considérer une ligne comme n'ayant que deux terminus
+  (qui peut être le même dans le cas d'une circulaire) et faire plusieurs
+  lignes 13, une 13.A qui va de St-Denis à Montrouge et une autre de Asnières
+  à Montrouge.
+
+  Nouvelle du client: on a les fichiers CSV mercredi <2023-03-15>.
+
+  Feature probable: afficher le plan d'une ligne sans considérer la position
+  géographique.
+
+  C'est OK de faire la précédente modélisation (avec GeographicVertex etc), on
+  utilisera ~instanceof~ au besoin pour déterminer si un graphe en particulier 
+  est un ~TransportNetwork~.
+* Réunion <2023-03-18 Sat>
+  Mise à jour de la modélisation prenant en compte les variants de lignes.
+  Conception de l'algorithme de génération de réseau arbitraire à partir du 
+  fichier de données.
+* Réunion <2023-03-22 Wed>
+  Corriger les ~assert()~ en ~assertTrue()~.
+  Trouver une fonction qui considère le temps et la distance pour le poids.
+  Implémenter l'algo DFS pour PLAN_0.
+  Implémenter l'algo Dijsktra pour PLAN_1.
+  Ajouter les issues de PLAN_* et LECT_*
+  Problème conception:
+  - Boucle Variant-TransportSegment
+    Pour cette boucle il suffit que TransportSegment connaisse un identifiant de
+    Variant ("8 variant 1" par exemple). Donc Variant doit avoir un id de Line
+  - Boucle Variant-Line
+    Variant n'a pas besoin de connaitre la ligne, juste un id.
+  - Boucle Vertex-Edge
+    On casse la boucle en indexant l'agrégation de Edge par Vertex
+    (donne une Map<Vertex, List<Edge>>)
+* Réunion <2023-03-29 Wed>
+  Précédents problèmes corrigés. Modifier l'implémentation du parser de réseau
+  arbitraire pour être en accord avec la spécification de l'algo, SURTOUT 
+  séparer le traitement de l'entrée CSV (format qui peut changer) de la création
+  des objets. Appliquer la même méthode pour le parser d'horaires (attendre que 
+  le fichier de données soit mis à jour). Mis à jour de la conception de Stop ->
+  on retire les TransportSchedules car calculables facilement à partir d'un 
+  Variant (voir doc discord décrivant le pseudo-code). Changement de 
+  l'identfiant d'un Variant -> devient une String pour plus de flexibilité.
+
+* Réunion <2023-03-21 Fri>
+  - Discussions sur l'algorithme de ~Variant.getStart()~.
+  - Création de toutes les issues pour ~LECT_NET~, notamment réflexion sur le
+    type qui doit être pris en entrée par les parseurs (il a été déterminé que
+    InputStream est le meilleur).
+  - Discussions sur l'algorithme de génération de ~TransportNetwork~ :
+    certaines parties seront remplacées par de simples appels à
+    ~TransportNetwork.findStop(Stop)~ et ~TransportNetwork.findLine(String)~.
+
+* Réunion <2023-04-06 Thu>
+  Réunion pour finir la conception autour de LECT_TIME. L'UML sera mis à jour.
+  Les issues suivantes seront créées :
+  - Création de la classe Passages qui encapsule une List<TransportSchedule>
+    et permet d'interroger cette liste, utile pour PLAN_1 car pour donner des
+    poids aux arêtes il faut le temps d'attente avant le prochain train.
+  - méthode Passages TransportNetwork.getPassagesAt(Stop) qui fournit tous
+    les passages de transport à un Stop donné, utilise l'algorithme écrit par
+    Guillermo.
+  - record DepartureTuple qui représente une ligne dans le CSV d'horaires et
+    fournit comme EdgeTuple une fonction
+    List<List<String>> -> List<DepartureTuple>.
+  - DeparturesParser qui fournit public static void
+    addDeparturesTo(TransportNetwork tn, InputStream departures) avec l'algo
+    suivant :
+    pour chaque t dans List<DepartureTuple> {
+      obtenir la ligne l de nom t.ligne dans tn.getLines() (ou exception)
+      obtenir le variant v de nom t.variant dans l.getVariants() (ou exception)
+      vérifier que t.station == v.getStart() sinon throw exception
+      v.addDeparture(t.heure)
+    }
+  - Variant.getDepartures() : retourner la liste triée
+  - enlever TransportSchedule.terminus car c'est juste
+    ts.variant().getEnd()

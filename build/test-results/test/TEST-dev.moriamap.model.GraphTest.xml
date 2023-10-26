@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.moriamap.model.GraphTest" tests="25" skipped="0" failures="0" errors="0" timestamp="2023-04-04T20:47:11" hostname="manj" time="0.024">
+  <properties/>
+  <testcase name="verticesOfGraphWithOneVertexReturnsVertex()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="verticesOfNewGraphIsEmptyList()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="routeFromTraversalWithNullSourceThrowsException()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="routeFromTraversalWithNullParentsThrowsException()" classname="dev.moriamap.model.GraphTest" time="0.001"/>
+  <testcase name="getOutgoingEdgesOfVertexWithOneOutgoingEdgesReturnsSuchList()" classname="dev.moriamap.model.GraphTest" time="0.001"/>
+  <testcase name="routeFromCorrectTraversalReturnsCorrectRoute()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="dsfInGraphWithOnlySourceReturnsEmtpyMap()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="dfsFromNullVertexThrowsException()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="routeFromTraversalWithNullDestinationThrowsException()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="testIfVertexIsInGraphWithNullVertexThrowsException()" classname="dev.moriamap.model.GraphTest" time="0.001"/>
+  <testcase name="addEdgeWithTwoNewVerticesAddsTwoNewVertices()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="getOutgoingEdgesOfVertexWithoutOutgoingEdgesIsEmptyList()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="dfsFromAbsentVertexThrowsException()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="routeFromTraversalWithAbsentSourceThrowsException()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="routeFromTraversalWithAbsentDestinationThrowsException()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="dfsInGraphWithOneEdgeReturnsMapWithOneEntry()" classname="dev.moriamap.model.GraphTest" time="0.001"/>
+  <testcase name="addNullEdgeThrowsException()" classname="dev.moriamap.model.GraphTest" time="0.001"/>
+  <testcase name="testIfVertexIsInGraphWhenPresentReturnsTrue()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="addNullVertexThrowsException()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="dfsOnGraphWithPossibleRouteReturnsOneOfThem()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="dsfInGraphVisitsAllVertices()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="edgesOfNewGraphIsEmptyList()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="getOutgoingEdgesOfAbsentVertexThrowsIllegalArgumentException()" classname="dev.moriamap.model.GraphTest" time="0.001"/>
+  <testcase name="getOutgoindEdgesOfNullVertexThrowsIllegalArgumentException()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <testcase name="testIfVertexIsInGraphWhenAbsentReturnsFalse()" classname="dev.moriamap.model.GraphTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

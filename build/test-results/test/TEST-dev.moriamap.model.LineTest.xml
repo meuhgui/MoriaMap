@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.moriamap.model.LineTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2023-04-04T20:47:11" hostname="manj" time="0.01">
+  <properties/>
+  <testcase name="testAddingTwiceTheSameVariantsDoesNothing()" classname="dev.moriamap.model.LineTest" time="0.001"/>
+  <testcase name="testStaticFactoryThrowsExceptionIfNullArgument()" classname="dev.moriamap.model.LineTest" time="0.001"/>
+  <testcase name="testEqualsOnItselfReturnsTrue()" classname="dev.moriamap.model.LineTest" time="0.0"/>
+  <testcase name="testLineStaticFactory()" classname="dev.moriamap.model.LineTest" time="0.001"/>
+  <testcase name="testAddingAVariantWhichWasAddedBeforeDoesNothing()" classname="dev.moriamap.model.LineTest" time="0.0"/>
+  <testcase name="testLinesThatHaveAtLeastOneDifferentVariantAreNotEqual()" classname="dev.moriamap.model.LineTest" time="0.0"/>
+  <testcase name="testLinesSameLinesWithSameVariantsAreEqual()" classname="dev.moriamap.model.LineTest" time="0.0"/>
+  <testcase name="testObjectIsNotEqualToLine()" classname="dev.moriamap.model.LineTest" time="0.001"/>
+  <testcase name="testLinesThatDoNotHaveSameNumberOfVariantsAreNotEqual()" classname="dev.moriamap.model.LineTest" time="0.001"/>
+  <testcase name="testAddNullVariantThrowsException()" classname="dev.moriamap.model.LineTest" time="0.001"/>
+  <testcase name="testLineIsNotEqualToNull()" classname="dev.moriamap.model.LineTest" time="0.0"/>
+  <testcase name="hashCodeOfSemanticallyEqualLinesAreEqual()" classname="dev.moriamap.model.LineTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

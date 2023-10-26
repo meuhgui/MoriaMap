@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TransportSegment.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MoriaMap</a> &gt; <a href="index.source.html" class="el_package">dev.moriamap.model</a> &gt; <span class="el_source">TransportSegment.java</span></div><h1>TransportSegment.java</h1><pre class="source lang-java linenums">package dev.moriamap.model;
+import java.time.Duration;
+
+/**
+ * A TransportSegment is an Edge of our Graph
+ */
+public class TransportSegment extends Edge{
+
+    /** The variant's name of this TransportSegment */
+    private String variantName;
+
+    /** The line's name of this TransportSegment */
+    private String lineName;
+
+    /** The travel duration of this TransportSegment */
+    private Duration travelDuration;
+
+    /** The distance of this TransportSegment */
+    private double distance;
+
+    private TransportSegment(Stop from, Stop to,String lineName, String variantName,Duration travelDuration, double distance){
+<span class="fc" id="L22">        super(from, to);</span>
+<span class="fc" id="L23">        this.variantName = variantName;</span>
+<span class="fc" id="L24">        this.lineName = lineName;</span>
+<span class="fc" id="L25">        this.travelDuration = travelDuration;</span>
+<span class="fc" id="L26">        this.distance = distance;</span>
+<span class="fc" id="L27">    }</span>
+
+    /**
+     * Static factory method returning a TransportSegment
+     * @param from The origin of this TransportSegment
+     * @param to The destination of this TransportSegment
+     * @param lineName The name of the line of this TransportSegment
+     * @param variantName The name of the variant of this TransportSegment
+     * @param travelDuration The travel time of this TransportSegment
+     * @param distance The distance of this Transport Segment
+     * @return a new TransportSegment
+     */
+    public static TransportSegment from(Stop from, Stop to, String lineName,String variantName, Duration travelDuration, double distance){
+<span class="fc bfc" id="L40" title="All 6 branches covered.">        if(lineName == null || variantName == null || travelDuration == null)</span>
+<span class="fc" id="L41">            throw new IllegalArgumentException(&quot;Null parameters are not allowed&quot;);</span>
+<span class="fc" id="L42">        return new TransportSegment(from,to,lineName,variantName,travelDuration,distance);</span>
+    }
+
+    /**
+     * Returns the weight of a TransportSegment. Useful to implement algorithms such as A*.
+     * @return the weight of this TransportSegment
+     */
+    @Override
+    public double getWeight(){
+<span class="fc" id="L51">        return travelDuration.getSeconds() + distance;</span>
+    }
+
+    /**
+     * {@return the line's name of this TransportSegment}
+     */
+    public String getLineName(){
+<span class="fc" id="L58">        return this.lineName;</span>
+    }
+
+    /**
+     * {@return the variant's name of this TransportSegment}
+     */
+    public String getVariantName(){
+<span class="fc" id="L65">        return this.variantName;</span>
+    }
+
+    /**
+     * {@return the travel duration of this TransportSegment}
+     */
+    public Duration getTravelDuration(){
+<span class="fc" id="L72">        return this.travelDuration;</span>
+    }
+
+    /**
+     * {@return the distance of this TransportSegment}
+     */
+    public double getDistance(){
+<span class="fc" id="L79">        return this.distance;</span>
+    }
+
+    /**
+     * Check if this transport segment is equal to the given transport segment.
+     * &lt;p&gt;
+     *     Two transport segment are equal if they have the same from, the same to, 
+     *      lineVariantName, the same distance and the same travelDuration
+     * &lt;/p&gt;
+     * @param object to be compared to
+     * @return true if this is equal to object
+     */
+    public boolean equals(Object object){
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        if (this ==  object)</span>
+<span class="fc" id="L93">            return true;</span>
+<span class="pc bpc" id="L94" title="1 of 4 branches missed.">        if (object == null || object.getClass() != this.getClass())</span>
+<span class="fc" id="L95">            return false;</span>
+<span class="fc" id="L96">        TransportSegment other = (TransportSegment) object;</span>
+<span class="fc bfc" id="L97" title="All 4 branches covered.">        return (this.getFrom()).equals(other.getFrom()) &amp;&amp; (this.getTo()).equals(other.getTo()) </span>
+<span class="pc bpc" id="L98" title="1 of 6 branches missed.">               &amp;&amp; this.lineName.equals(other.lineName) &amp;&amp; this.variantName.equals(other.variantName) </span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">               &amp;&amp; this.distance == other.distance &amp;&amp; this.travelDuration.equals(other.travelDuration);</span>
+    }
+
+    /**
+     * Gets the hash code of this transport segment
+     * @return the hash code of this transport segment
+     */
+    @Override public int hashCode(){
+<span class="fc" id="L107">        final int prime = 13;</span>
+<span class="fc" id="L108">        int hash = 1;</span>
+<span class="fc" id="L109">        hash *= prime;</span>
+<span class="fc" id="L110">        hash += ((Stop)this.getFrom()).hashCode();</span>
+<span class="fc" id="L111">        hash += ((Stop)this.getTo()).hashCode();</span>
+<span class="fc" id="L112">        hash += this.lineName.hashCode();</span>
+<span class="fc" id="L113">        hash += this.variantName.hashCode();</span>
+<span class="fc" id="L114">        hash += this.travelDuration.hashCode();</span>
+<span class="fc" id="L115">        hash += Long.valueOf(Double.doubleToLongBits(this.distance)).hashCode();</span>
+<span class="fc" id="L116">        return hash;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

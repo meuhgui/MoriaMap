@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.moriamap.model.StopTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2023-04-04T20:47:11" hostname="manj" time="0.007">
+  <properties/>
+  <testcase name="stopInstanceIsEqualToItselfTest()" classname="dev.moriamap.model.StopTest" time="0.0"/>
+  <testcase name="stopIsNotEqualToNull()" classname="dev.moriamap.model.StopTest" time="0.001"/>
+  <testcase name="stopsWithDifferentCoordinatesAreNotEqual()" classname="dev.moriamap.model.StopTest" time="0.0"/>
+  <testcase name="stopsWithDifferentCoordinatesAndDifferentNamesAndLongitudeAreNotEqual()" classname="dev.moriamap.model.StopTest" time="0.0"/>
+  <testcase name="semanticallyEqualStopsAreEqual()" classname="dev.moriamap.model.StopTest" time="0.001"/>
+  <testcase name="instanceOfDifferentClassIsNotEqual()" classname="dev.moriamap.model.StopTest" time="0.0"/>
+  <testcase name="stopsWithDifferentCoordinatesAndDifferentNamesAreNotEqual()" classname="dev.moriamap.model.StopTest" time="0.0"/>
+  <testcase name="hashCodeOfSemanticallyEqualStopsAreEqual()" classname="dev.moriamap.model.StopTest" time="0.001"/>
+  <testcase name="stopsWithDifferentNamesAreNotEqual()" classname="dev.moriamap.model.StopTest" time="0.0"/>
+  <testcase name="stopConstructorTest()" classname="dev.moriamap.model.StopTest" time="0.0"/>
+  <testcase name="stopsWithDifferentCoordinatesAndDifferentNamesAndLatitudeAreNotEqual()" classname="dev.moriamap.model.StopTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
