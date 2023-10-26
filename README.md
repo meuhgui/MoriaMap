@@ -1,8 +1,10 @@
 # MoriaMap
 
 ## Features
-At the current state the program is able to take two stops and display a path the user need to take on the network to get from one stop to the other.
-The stops are named 's1' to 's10', check the image "transport network.jpg" to get a view on the whole network.
+At the current state the program is able to load the transport network described in map_data.csv (LECT_NET) and the schedule described in schedule.csv.
+It is also able to take two stops and display a non-optimized path the user needs to take on the network to get from one stop to the other (PLAN_0), display the different transports passages for a given stop (LECT_TIME), show an optimized in time or distance path to take from given starting and destination stop (PLAN_1) and be able to have a starting or target point anywhere on earth and find an optimized path between them sometimes taking the transport network, or sometimes not (PLAN_2).
+As a separate feature we implemented a way for the optimized route to make it able to choose walking in the middle of the route if the time it take to wait for the next transport is taking more time than just walking (PLAN_3).
+The transport network is based off Paris transport network so the stops are named after real stations like "Lourmel".
 
 ## Instructions
 
